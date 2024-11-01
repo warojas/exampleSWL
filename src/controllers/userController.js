@@ -13,21 +13,25 @@ router.get('/:id', async(req, res)=>{
     if(user){
         res.json(user);
     }else{
-        res.status(404).json({message: 'Ususario no existe'});
+        res.status(404).json({message: 'User not found'});
     }
 });
 
 router.post('/', async(req,res)=>{
     const newUser = await userService.createUser(req.body);
-    res.status(201).json(newUser);
+    if(newUser){
+        res.status(201).json(newUser);
+    }else{
+        res.status(404).json(newUser);
+    }
 });
 
 router.put('/:id', async(req,res)=>{
-    const updateUser = await userService.updateUser(re.params.id, req.body);
+    const updateUser = await userService.updateUser(req.params.id, req.body);
     if(updateUser){
         res.json(updateUser);
     }else{
-        res.status(404).json({message: 'Usuario no existe'});
+        res.status(404).json({message: 'User not found'});
     }
 });
 
@@ -36,7 +40,7 @@ router.delete('/:id',async(req,res)=>{
     if(deleted){
         res.status(204).send();
     }else{
-        res.status(404).json({message: 'Usuario no existe'});
+        res.status(404).json({message: 'User dont delete'});
     }
 });
 

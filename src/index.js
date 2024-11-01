@@ -8,4 +8,6 @@ app.use(express.json());
 app.use('/api/users',userController);
 
 const PORT = process.env.PORT || 3000;
-app.listen(PORT,() => console.log(`Servidor corriendo en port ${PORT}`));
+app.listen(PORT,() => {
+    console.log(`Servidor corriendo en port ${PORT}`)
+});
